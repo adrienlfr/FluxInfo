@@ -1,5 +1,7 @@
 #ifdef QT_QML_DEBUG
 #include <QtQuick>
+#include "rss.h"
+#include "channel.h"
 #endif
 
 #include <sailfishapp.h>
@@ -16,5 +18,15 @@ int main(int argc, char *argv[])
     //
     // To display the view, call "show()" (will show fullscreen on device).
 
-    return SailfishApp::main(argc, argv);
+    QList<QObject*> mesRss;
+    mesRss.append(new Rss(new Channel("Mes couilles sur ton front ca fait une licorne!")));
+
+    QGuiApplication* app = SailfishApp::application(argc, argv);
+    QQuickView *view = SailfishApp::createView();
+    view -> rootContext() -> setContextProperty("mesRss", QVariant::fromValue(mesRss));
+
+    view -> setSource(SailfishApp::pathToMainQml());
+    view -> show();
+
+    return app -> exec();
 }

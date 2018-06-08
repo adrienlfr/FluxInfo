@@ -1,0 +1,13 @@
+#ifndef CHANELITEM_H
+#define CHANELITEM_H
+
+#include <QObject>
+
+class ChanelItem : public QObject
+{
+Q_OBJECT
+public:
+    ChanelItem();
+};
+
+#endif // CHANELITEM_H

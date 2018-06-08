@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.1">
 <context>
     <name>CoverPage</name>
     <message>
@@ -11,10 +11,6 @@
 <context>
     <name>FirstPage</name>
     <message>
-        <source>Show Page 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>UI Template</source>
         <translation type="unfinished"></translation>
     </message>
@@ -22,15 +18,15 @@
         <source>Hello Sailors</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>SecondPage</name>
     <message>
-        <source>Nested Page</source>
+        <source>Flux RSS</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>FluxRSSPage</name>
     <message>
-        <source>Item</source>
+        <source>Mes Flux RSS</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -14,18 +14,21 @@ TARGET = FluxInfo
 
 CONFIG += sailfishapp
 
-SOURCES += src/FluxInfo.cpp
+SOURCES += src/FluxInfo.cpp \
+    src/channel.cpp \
+    src/rss.cpp \
+    src/channelitem.cpp
 
 DISTFILES += qml/FluxInfo.qml \
     qml/cover/CoverPage.qml \
     qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
     rpm/FluxInfo.changes.in \
     rpm/FluxInfo.changes.run.in \
     rpm/FluxInfo.spec \
     rpm/FluxInfo.yaml \
     translations/*.ts \
-    FluxInfo.desktop
+    FluxInfo.desktop \
+    qml/pages/FluxRSSPage.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 
@@ -38,3 +41,8 @@ CONFIG += sailfishapp_i18n
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/FluxInfo-de.ts
+
+HEADERS += \
+    src/channel.h \
+    src/rss.h \
+    src/channelitem.h
