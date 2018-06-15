@@ -29,5 +29,9 @@
         <source>Mes Flux RSS</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Ajouter un Flux Rss</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

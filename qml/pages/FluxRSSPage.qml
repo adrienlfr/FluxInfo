@@ -9,8 +9,16 @@ Page {
 
     SilicaListView {
         id: listView
-        model: mesRss
+        model: mesChannel
         anchors.fill: parent
+
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Ajouter un Flux Rss")
+                onClicked: listView.model.addChannel("Apple c'est le top!")
+            }
+        }
+
         header: PageHeader {
             title: qsTr("Mes Flux RSS")
         }
@@ -19,7 +27,7 @@ Page {
 
             Label {
                 x: Theme.horizontalPageMargin
-                text: listView.model.channel.titre
+                text: titre
                 anchors.verticalCenter: parent.verticalCenter
                 color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
             }

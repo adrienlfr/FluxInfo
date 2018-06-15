@@ -2,12 +2,15 @@
 #include <QtQuick>
 #include "rss.h"
 #include "channel.h"
+#include "channelmodel.h"
 #endif
 
 #include <sailfishapp.h>
 
 int main(int argc, char *argv[])
 {
+    QGuiApplication* app = SailfishApp::application(argc, argv);
+
     // SailfishApp::main() will display "qml/FluxInfo.qml", if you need more
     // control over initialization, you can use:
     //
@@ -18,12 +21,19 @@ int main(int argc, char *argv[])
     //
     // To display the view, call "show()" (will show fullscreen on device).
 
-    QList<QObject*> mesRss;
-    mesRss.append(new Rss(new Channel("Mes couilles sur ton front ca fait une licorne!")));
+    ChannelModel model;
+    /*
+    QList<Rss*> mesRss;
 
-    QGuiApplication* app = SailfishApp::application(argc, argv);
+    mesRss.append(new Rss(new Channel("Mes couilles sur ton front ca fait une licorne!")));
+    mesRss.append(new Rss(new Channel("Windows c'est de la merde")));
+    */
+
+    model.addChannel("Mes couilles sur ton front ca fait une licorne!");
+    model.addChannel("Windows c'est de la merde");
+
     QQuickView *view = SailfishApp::createView();
-    view -> rootContext() -> setContextProperty("mesRss", QVariant::fromValue(mesRss));
+    view -> rootContext() -> setContextProperty("mesChannel", &model);
 
     view -> setSource(SailfishApp::pathToMainQml());
     view -> show();

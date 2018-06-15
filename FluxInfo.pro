@@ -17,7 +17,8 @@ CONFIG += sailfishapp
 SOURCES += src/FluxInfo.cpp \
     src/channel.cpp \
     src/rss.cpp \
-    src/channelitem.cpp
+    src/channelitem.cpp \
+    src/channelmodel.cpp
 
 DISTFILES += qml/FluxInfo.qml \
     qml/cover/CoverPage.qml \
@@ -45,4 +46,5 @@ TRANSLATIONS += translations/FluxInfo-de.ts
 HEADERS += \
     src/channel.h \
     src/rss.h \
-    src/channelitem.h
+    src/channelitem.h \
+    src/channelmodel.h
