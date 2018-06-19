@@ -13,7 +13,8 @@ class ChannelModel : public QAbstractListModel
 public:
     enum ChannelRoles {
         TitreRole = Qt::UserRole + 1,
-        ChannelRole
+        LienRole,
+        ChannelRole,
     };
 
     ChannelModel(QObject *parent = nullptr);

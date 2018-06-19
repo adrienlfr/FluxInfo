@@ -4,41 +4,59 @@ import ChannelModel 1.0
 
 Page {
     property var channel
+    property var index
+    property var channelModel : ChannelModel
 
-    PageHeader {
-        title: "Modifier un flux Rss"
-        id: header
-    }
+    SilicaFlickable {
+        anchors.fill: parent
 
-    Column {
-        anchors.top: header.bottom
-        width: parent.width
-
-        TextField {
-            text: channel.lien
-            label: "lien"
-
-            width: parent.width
-            EnterKey.onClicked: {
-                channel.lien= text
-                sizeField.focus = true
+        // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Supprimer le flux")
+                onClicked: {
+                    channelModel.removeRow(index);
+                    pageStack.pop();
+                }
             }
-            onFocusChanged: text = Qt.binding( function() { return channel.lien} )
         }
 
-        TextField {
-            id: titre
-            text: channel.titre
-            label: "Titre"
-            width: parent.width
-
-            inputMethodHints: Qt.ImhDigitsOnly
-            EnterKey.onClicked: {
-                channel.titre = text
-                focus = false
-            }
-            onFocusChanged:  text = Qt.binding( function() { return channel.titre} )
+        PageHeader {
+            title: "Modifier un flux Rss"
+            id: header
         }
 
+        Column {
+            anchors.top: header.bottom
+            width: parent.width
+
+            TextField {
+                text: channel.lien
+                label: "lien"
+
+                width: parent.width
+                EnterKey.onClicked: {
+                    channel.lien= text
+                    sizeField.focus = true
+                }
+                onFocusChanged: text = Qt.binding( function() { return channel.lien} )
+            }
+
+            TextField {
+                id: titre
+                text: channel.titre
+                label: "Titre"
+                width: parent.width
+
+                inputMethodHints: Qt.ImhDigitsOnly
+                EnterKey.onClicked: {
+                    channel.titre = text
+                    focus = true
+                }
+                onFocusChanged:  text = Qt.binding( function() { return channel.titre} )
+            }
+
+        }
     }
+
 }

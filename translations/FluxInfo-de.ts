@@ -20,17 +20,20 @@
     </message>
 </context>
 <context>
+    <name>DetailRss</name>
+    <message>
+        <source>Supprimer le flux</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FirstPage</name>
     <message>
-        <source>UI Template</source>
-        <translation>UI-Vorlage</translation>
-    </message>
-    <message>
-        <source>Hello Sailors</source>
-        <translation>Hallo Matrosen</translation>
-    </message>
-    <message>
         <source>Flux RSS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Articles</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
