@@ -1,84 +1,102 @@
 #include "channelmodel.h"
 ChannelModel::ChannelModel(QObject *parent)
+    : QAbstractListModel(parent), m_channelList(nullptr)
 {
 
-}
-
-void ChannelModel::addChannel(QString titre)
-{
-    beginInsertRows(QModelIndex(), rowCount(), rowCount());
-
-    m_channel << new Channel(titre);
-
-    endInsertRows();
 }
 
 int ChannelModel::rowCount(const QModelIndex &parent) const
 {
-    return m_channel.count();
+    if ( parent.isValid())
+        return 0;
+    return m_channelList->count();
 }
 
 QVariant ChannelModel::data(const QModelIndex &index, int role) const
 {
-    if (index.row() < 0 || index.row() >= m_channel.count())
-        return QVariant();
-    Channel * channel = m_channel[index.row()];
-    if (role == TitreRole)
+    auto channel = m_channelList->at(index.row());
+
+    switch (role) {
+    case TitreRole:
         return channel->titre();
+    case ChannelRole:
+        return QVariant(QVariant::fromValue(channel));
+    default:
+        break;
+    }
     return QVariant();
+}
+
+ChannelList *ChannelModel::listChannel() const
+{
+    return m_channelList;
+}
+
+void ChannelModel::setList(ChannelList *list)
+{
+    beginResetModel();
+
+       if (m_channelList)
+           m_channelList->disconnect(this);
+
+       m_channelList = list;
+
+       if (m_channelList) {
+           connect(m_channelList, &ChannelList::preItemAppended, this, [=]() {
+               const int index = m_channelList->count();
+               beginInsertRows(QModelIndex(), index, index);
+           });
+           connect(m_channelList, &ChannelList::postItemAppended, this, [=]() {
+               endInsertRows();
+           });
+
+           connect(m_channelList, &ChannelList::preItemRemoved, this, [=](int index) {
+               beginRemoveRows(QModelIndex(), index, index);
+           });
+           connect(m_channelList, &ChannelList::postItemRemoved, this, [=]() {
+               endRemoveRows();
+           });
+           connect(m_channelList, &ChannelList::itemChanged,
+                   this, [=](int row){ emit ChannelModel::dataChanged(this->index(row), this->index(row)); });
+       }
+
+   endResetModel();
 }
 
 bool ChannelModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-        if (index.row() < 0 || index.row() >= m_channel.count())
-        return false;
-    if ( data(index, role) == value )
+    if (data(index, role) != value) {
+
+        auto channel = m_channelList->at(index.row());
+
+        switch (role) {
+        case TitreRole:
+            channel->setTitre(value.toString());
+            emit dataChanged(index, index, QVector<int>() << role);
+        default:
+            break;
+        }
         return true;
-
-    Channel * channel = m_channel[index.row()];
-    if ( role == TitreRole )
-        channel->setTitre(value.toString());
-
-    QVector<int> roles;
-    roles.append(role);
-
-    QModelIndex topLeft = index.sibling(0,0);
-    QModelIndex bottomRight = index.sibling(m_channel.count()-1,0);
-    emit dataChanged(topLeft, bottomRight, roles);
-
-    return true;
+    }
+    return false;
 }
 
-bool ChannelModel::removeRows(int row, int count, const QModelIndex &parent)
+void ChannelModel::removeRow(int index)
 {
-    if (row < 0 || row+count >= m_channel.count())
-        return false;
-
-    beginRemoveRows(parent, row, row+count-1);
-
-    for (int nb = 0; nb < count; ++nb) {
-        m_channel.removeAt(row);
-    }
-
-    endRemoveRows();
-    return true;
+    m_channelList->removeChannel(index);
 }
 
-bool ChannelModel::insertRows(int row, int count, const QModelIndex &parent)
+void ChannelModel::newChannel()
 {
-    beginInsertRows(parent, row, row+count-1);
-
-    for (int nb = 0; nb < count; ++nb) {
-        m_channel.insert(row, new Channel("Titre " + nb));
-    }
-
-    endInsertRows();
-    return true;
+    QString lien(tr("Inserez le lien"));
+    QString titre(tr("New Rss"));
+    m_channelList->createChannel(lien, titre);
 }
 
 QHash<int, QByteArray> ChannelModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[TitreRole] = "titre";
+    roles[ChannelRole] = "channel";
     return roles;
 }

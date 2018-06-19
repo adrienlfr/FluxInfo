@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import ChannelModel 1.0
 
 Page {
     id: page
@@ -9,13 +10,13 @@ Page {
 
     SilicaListView {
         id: listView
-        model: mesChannel
+        model: ChannelModel { listChannel: mesChannels }
         anchors.fill: parent
 
         PullDownMenu {
             MenuItem {
                 text: qsTr("Ajouter un Flux Rss")
-                onClicked: listView.model.addChannel("Apple c'est le top!")
+                onClicked: listView.model.newChannel()
             }
         }
 
@@ -31,7 +32,13 @@ Page {
                 anchors.verticalCenter: parent.verticalCenter
                 color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
-            onClicked: console.log("Clicked " + index)
+            onClicked: {
+                console.log(channel);
+                pageStack.push( detailRss, { channel: channel }  )}
+            Component {
+                id: detailRss
+                DetailRss {}
+            }
         }
         VerticalScrollDecorator {}
     }

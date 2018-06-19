@@ -21,7 +21,9 @@ int main(int argc, char *argv[])
     //
     // To display the view, call "show()" (will show fullscreen on device).
 
-    ChannelModel model;
+    ChannelList model;
+
+    qmlRegisterType<ChannelModel>("ChannelModel", 1, 0, "ChannelModel" );
     /*
     QList<Rss*> mesRss;
 
@@ -29,11 +31,8 @@ int main(int argc, char *argv[])
     mesRss.append(new Rss(new Channel("Windows c'est de la merde")));
     */
 
-    model.addChannel("Mes couilles sur ton front ca fait une licorne!");
-    model.addChannel("Windows c'est de la merde");
-
     QQuickView *view = SailfishApp::createView();
-    view -> rootContext() -> setContextProperty("mesChannel", &model);
+    view -> rootContext() -> setContextProperty("mesChannels", &model);
 
     view -> setSource(SailfishApp::pathToMainQml());
     view -> show();

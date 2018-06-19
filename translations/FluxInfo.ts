@@ -2,9 +2,20 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>ChannelModel</name>
+    <message>
+        <source>Inserez le lien</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Rss</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
-        <source>My Cover</source>
+        <source>Flux info</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
