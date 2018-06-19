@@ -3,6 +3,7 @@
 #include "rss.h"
 #include "channel.h"
 #include "channelmodel.h"
+#include "parserrss.h"
 #endif
 
 #include <sailfishapp.h>
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
     ChannelList model;
 
     qmlRegisterType<ChannelModel>("ChannelModel", 1, 0, "ChannelModel" );
+    qmlRegisterType<ParserRSS>("ParserRss", 1, 0, "ParserRss" );
     /*
     QList<Rss*> mesRss;
 
