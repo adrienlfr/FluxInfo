@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QAbstractListModel>
-#include "channel.h"
 #include "channellist.h"
 
 class ChannelModel : public QAbstractListModel

@@ -22,7 +22,9 @@ SOURCES += src/FluxInfo.cpp \
     src/channelitem.cpp \
     src/channelmodel.cpp \
     src/channellist.cpp \
-    src/parserrss.cpp
+    src/parserrss.cpp \
+    src/channelitemlist.cpp \
+    src/channelitemmodel.cpp
 
 DISTFILES += qml/FluxInfo.qml \
     qml/cover/CoverPage.qml \
@@ -34,7 +36,8 @@ DISTFILES += qml/FluxInfo.qml \
     translations/*.ts \
     FluxInfo.desktop \
     qml/pages/FluxRSSPage.qml \
-    qml/pages/DetailRss.qml
+    qml/pages/DetailRss.qml \
+    qml/pages/DetailChannelItem.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 
@@ -54,4 +57,6 @@ HEADERS += \
     src/channelitem.h \
     src/channelmodel.h \
     src/channellist.h \
-    src/parserrss.h
+    src/parserrss.h \
+    src/channelitemlist.h \
+    src/channelitemmodel.h

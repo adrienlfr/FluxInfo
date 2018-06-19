@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import ChannelItemModel 1.0
 
 Page {
     id: page
@@ -8,7 +9,9 @@ Page {
     allowedOrientations: Orientation.All
 
     // To enable PullDownMenu, place our content in a SilicaFlickable
-    SilicaFlickable {
+    SilicaListView {
+        id: listView
+        model: ChannelItemModel { listChannelItem: mesChannelItems }
         anchors.fill: parent
 
         // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
@@ -19,20 +22,29 @@ Page {
             }
         }
 
-        // Tell SilicaFlickable the height of its content.
-        contentHeight: column.height
-
-        // Place our content in a Column.  The PageHeader is always placed at the top
-        // of the page, followed by our content.
-        Column {
-            id: column
-
-            width: page.width
-            spacing: Theme.paddingLarge
-            PageHeader {
-                title: qsTr("Articles")
-            }
-
+        header: PageHeader {
+            title: qsTr("Articles")
         }
+
+        delegate: BackgroundItem {
+            id: delegate
+
+            Label {
+                x: Theme.horizontalPageMargin
+                text: titre
+                anchors.verticalCenter: parent.verticalCenter
+                color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
+            }
+            onClicked: {
+                console.log(channelItem);
+                pageStack.push(detailChannelItem, { channelItem: channelItem })
+            }
+            Component {
+                id: detailChannelItem
+                DetailChannelItem {}
+            }
+        }
+
+        VerticalScrollDecorator {}
     }
 }

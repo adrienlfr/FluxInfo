@@ -3,6 +3,7 @@
 #include "rss.h"
 #include "channel.h"
 #include "channelmodel.h"
+#include "channelitemmodel.h"
 #include "parserrss.h"
 #endif
 
@@ -23,8 +24,10 @@ int main(int argc, char *argv[])
     // To display the view, call "show()" (will show fullscreen on device).
 
     ChannelList model;
+    ChannelItemList modelItem;
 
     qmlRegisterType<ChannelModel>("ChannelModel", 1, 0, "ChannelModel" );
+    qmlRegisterType<ChannelItemModel>("ChannelItemModel", 1, 0, "ChannelItemModel" );
     qmlRegisterType<ParserRSS>("ParserRss", 1, 0, "ParserRss" );
     /*
     QList<Rss*> mesRss;
@@ -34,7 +37,8 @@ int main(int argc, char *argv[])
     */
 
     QQuickView *view = SailfishApp::createView();
-    view -> rootContext() -> setContextProperty("mesChannels", &model);
+    view -> rootContext() -> setContextProperty("mesChannelItems", &modelItem);
+    // view -> rootContext() -> setContextProperty("mesChannels", &model);
 
     view -> setSource(SailfishApp::pathToMainQml());
     view -> show();
