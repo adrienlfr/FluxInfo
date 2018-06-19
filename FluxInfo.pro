@@ -14,12 +14,15 @@ TARGET = FluxInfo
 
 CONFIG += sailfishapp
 
+QT += xml
+
 SOURCES += src/FluxInfo.cpp \
     src/channel.cpp \
     src/rss.cpp \
     src/channelitem.cpp \
     src/channelmodel.cpp \
-    src/channellist.cpp
+    src/channellist.cpp \
+    src/parserrss.cpp
 
 DISTFILES += qml/FluxInfo.qml \
     qml/cover/CoverPage.qml \
@@ -50,4 +53,5 @@ HEADERS += \
     src/rss.h \
     src/channelitem.h \
     src/channelmodel.h \
-    src/channellist.h
+    src/channellist.h \
+    src/parserrss.h

@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import ChannelModel 1.0
+import ParserRss 1.0
 
 Page {
     property var channel
@@ -39,7 +40,10 @@ Page {
                     channel.lien= text
                     sizeField.focus = true
                 }
-                onFocusChanged: text = Qt.binding( function() { return channel.lien} )
+                onFocusChanged: {
+                    text = Qt.binding( function() { return channel.lien} );
+                    ParserRss.parse(channel.lien);
+                }
             }
 
             TextField {
