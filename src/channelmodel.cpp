@@ -73,6 +73,9 @@ bool ChannelModel::setData(const QModelIndex &index, const QVariant &value, int 
         case TitreRole:
             channel->setTitre(value.toString());
             emit dataChanged(index, index, QVector<int>() << role);
+        case LienRole:
+            channel->setLien(value.toString());
+            emit dataChanged(index, index, QVector<int>() << role);
         default:
             break;
         }
@@ -90,13 +93,14 @@ void ChannelModel::newChannel()
 {
     QString lien(tr("Inserez le lien"));
     QString titre(tr("New Rss"));
-    m_channelList->createChannel(lien, titre);
+    m_channelList->createChannel(titre, lien);
 }
 
 QHash<int, QByteArray> ChannelModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[TitreRole] = "titre";
+    roles[LienRole] = "lien";
     roles[ChannelRole] = "channel";
     return roles;
 }

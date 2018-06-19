@@ -30,14 +30,9 @@ Page {
             width: page.width
             spacing: Theme.paddingLarge
             PageHeader {
-                title: qsTr("UI Template")
+                title: qsTr("Articles")
             }
-            Label {
-                x: Theme.horizontalPageMargin
-                text: qsTr("Hello Sailors")
-                color: Theme.secondaryHighlightColor
-                font.pixelSize: Theme.fontSizeExtraLarge
-            }
+
         }
     }
 }

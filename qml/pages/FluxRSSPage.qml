@@ -34,7 +34,8 @@ Page {
             }
             onClicked: {
                 console.log(channel);
-                pageStack.push( detailRss, { channel: channel }  )}
+                pageStack.push( detailRss, { channel: channel, index: index, channelModel: listView.model }  )}
+
             Component {
                 id: detailRss
                 DetailRss {}
