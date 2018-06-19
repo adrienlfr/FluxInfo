@@ -14,7 +14,7 @@ private:
     QString m_description;
 
 public:
-ChannelItem();
+ChannelItem(QString titre, QString description);
 
 QString titre() const;
 QString description() const;
@@ -26,6 +26,7 @@ void setDescription(QString description);
 signals:
 void titreChanged(QString titre);
 void descriptionChanged(QString description);
+void channelItemChanged();
 };
 
 #endif // CHANNELITEM_H

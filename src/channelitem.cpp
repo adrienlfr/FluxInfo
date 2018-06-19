@@ -1,8 +1,9 @@
 #include "channelitem.h"
 
-ChannelItem::ChannelItem()
+ChannelItem::ChannelItem(QString titre, QString description)
 {
-
+    setTitre(titre);
+    setDescription(description);
 }
 
 QString ChannelItem::titre() const

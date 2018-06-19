@@ -5,6 +5,7 @@
 #include "rss.h"
 #include "channel.h"
 #include "channelmodel.h"
+#include "channelitemmodel.h"
 #include "parserrss.h"
 #include "fluxmanager.h"
 
@@ -25,9 +26,18 @@ int main(int argc, char *argv[])
     //
     // To display the view, call "show()" (will show fullscreen on device).
 
+<<<<<<< HEAD
 
     qmlRegisterType<ChannelModel>("ChannelModel", 1, 0, "ChannelModel" );
     qmlRegisterType<FluxManager>("FluxManager", 1, 0, "FluxManager" );
+=======
+    ChannelList model;
+    ChannelItemList modelItem;
+
+    qmlRegisterType<ChannelModel>("ChannelModel", 1, 0, "ChannelModel" );
+    qmlRegisterType<ChannelItemModel>("ChannelItemModel", 1, 0, "ChannelItemModel" );
+    qmlRegisterType<ParserRSS>("ParserRss", 1, 0, "ParserRss" );
+>>>>>>> Master detail ChannelItem & vue DetailChannelItem
     /*
     QList<Rss*> mesRss;
 
@@ -38,8 +48,13 @@ int main(int argc, char *argv[])
     FluxManager manager;
 
     QQuickView *view = SailfishApp::createView();
+<<<<<<< HEAD
     view -> rootContext() -> setContextProperty("mesChannels", manager.channels());
     view -> rootContext() -> setContextProperty("manager", &manager);
+=======
+    view -> rootContext() -> setContextProperty("mesChannelItems", &modelItem);
+    // view -> rootContext() -> setContextProperty("mesChannels", &model);
+>>>>>>> Master detail ChannelItem & vue DetailChannelItem
 
     view -> setSource(SailfishApp::pathToMainQml());
     view -> show();
