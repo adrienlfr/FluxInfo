@@ -53,8 +53,12 @@ int main(int argc, char *argv[])
     view -> rootContext() -> setContextProperty("manager", &manager);
 =======
     view -> rootContext() -> setContextProperty("mesChannelItems", &modelItem);
+<<<<<<< HEAD
     // view -> rootContext() -> setContextProperty("mesChannels", &model);
 >>>>>>> Master detail ChannelItem & vue DetailChannelItem
+=======
+    view -> rootContext() -> setContextProperty("mesChannels", &model);
+>>>>>>> Ajout de la persistance json
 
     view -> setSource(SailfishApp::pathToMainQml());
     view -> show();

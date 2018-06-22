@@ -32,9 +32,7 @@ Page {
                 anchors.verticalCenter: parent.verticalCenter
                 color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
-            onClicked: {
-                console.log(channel);
-                pageStack.push( detailRss, { channel: channel, index: index, channelModel: listView.model }  )}
+            onClicked: { pageStack.push( detailRss, { channel: channel, index: index, channelModel: listView.model } ) }
 
             Component {
                 id: detailRss

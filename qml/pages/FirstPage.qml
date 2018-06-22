@@ -39,10 +39,7 @@ Page {
                 anchors.verticalCenter: parent.verticalCenter
                 color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
-            onClicked: {
-                console.log(channelItem);
-                pageStack.push(detailChannelItem, { channelItem: channelItem })
-            }
+            onClicked: { pageStack.push(detailChannelItem, { channelItem: channelItem }) }
             Component {
                 id: detailChannelItem
                 DetailChannelItem {}
