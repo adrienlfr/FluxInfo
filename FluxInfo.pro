@@ -22,7 +22,8 @@ SOURCES += src/FluxInfo.cpp \
     src/channelitem.cpp \
     src/channelmodel.cpp \
     src/channellist.cpp \
-    src/parserrss.cpp
+    src/parserrss.cpp \
+    src/fluxmanager.cpp
 
 DISTFILES += qml/FluxInfo.qml \
     qml/cover/CoverPage.qml \
@@ -54,4 +55,5 @@ HEADERS += \
     src/channelitem.h \
     src/channelmodel.h \
     src/channellist.h \
-    src/parserrss.h
+    src/parserrss.h \
+    src/fluxmanager.h

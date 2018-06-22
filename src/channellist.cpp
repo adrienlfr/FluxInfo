@@ -33,12 +33,10 @@ void ChannelList::removeChannel(int position)
 {
     emit preItemRemoved(position);
 
-    // No longer care for the file change
     disconnect ( m_channels[position], &Channel::channelChanged, this, 0);
 
     m_channels.removeAt(position);
 
-    // Reconnect to good positions
     for ( ; position < count() ; ++position ) {
         disconnect ( m_channels[position], &Channel::channelChanged, this, 0);
         connect( m_channels[position], &Channel::channelChanged, this, [=](){ emit ChannelList::itemChanged( position ); } );

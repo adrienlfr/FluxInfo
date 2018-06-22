@@ -1,12 +1,15 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import ChannelModel 1.0
-import ParserRss 1.0
+import FluxManager 1.0
 
 Page {
     property var channel
     property var index
-    property var channelModel : ChannelModel
+
+    property var channelModel
+
+    property var rss
 
     SilicaFlickable {
         anchors.fill: parent
@@ -42,7 +45,8 @@ Page {
                 }
                 onFocusChanged: {
                     text = Qt.binding( function() { return channel.lien} );
-                    ParserRss.parse(channel.lien);
+                    console.log("ok");
+
                 }
             }
 

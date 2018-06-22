@@ -1,10 +1,13 @@
 #ifdef QT_QML_DEBUG
 #include <QtQuick>
+#endif
+
 #include "rss.h"
 #include "channel.h"
 #include "channelmodel.h"
 #include "parserrss.h"
-#endif
+#include "fluxmanager.h"
+
 
 #include <sailfishapp.h>
 
@@ -22,10 +25,9 @@ int main(int argc, char *argv[])
     //
     // To display the view, call "show()" (will show fullscreen on device).
 
-    ChannelList model;
 
     qmlRegisterType<ChannelModel>("ChannelModel", 1, 0, "ChannelModel" );
-    qmlRegisterType<ParserRSS>("ParserRss", 1, 0, "ParserRss" );
+    qmlRegisterType<FluxManager>("FluxManager", 1, 0, "FluxManager" );
     /*
     QList<Rss*> mesRss;
 
@@ -33,8 +35,11 @@ int main(int argc, char *argv[])
     mesRss.append(new Rss(new Channel("Windows c'est de la merde")));
     */
 
+    FluxManager manager;
+
     QQuickView *view = SailfishApp::createView();
-    view -> rootContext() -> setContextProperty("mesChannels", &model);
+//    view -> rootContext() -> setContextProperty("mesChannels", manager.channels());
+    view -> rootContext() -> setContextProperty("manager", &manager);
 
     view -> setSource(SailfishApp::pathToMainQml());
     view -> show();

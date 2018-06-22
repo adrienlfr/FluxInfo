@@ -10,7 +10,7 @@ Page {
 
     SilicaListView {
         id: listView
-        model: ChannelModel { listChannel: mesChannels }
+        model: ChannelModel { listChannel: manager.channels() }
         anchors.fill: parent
 
         PullDownMenu {
