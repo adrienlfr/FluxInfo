@@ -3,6 +3,8 @@
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QStandardPaths>
+#include <QDir>
 
 FluxManager::FluxManager(QObject *parent) : QObject(parent)
   , m_channels(new ChannelList)
@@ -19,9 +21,11 @@ void FluxManager::parseRss(QString lien)
 
 bool FluxManager::loadData()
 {
-    QFile loadFile(QStringLiteral("save.json"));
+    QString path = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    path += "/save.json";
+    QFile loadFile(path);
 
-    if (!loadFile.open(QIODevice::ReadOnly)) {
+    if (!loadFile.open(QIODevice::ReadWrite)) {
         qWarning("Couldn't open save file.");
         return false;
     }
@@ -37,9 +41,14 @@ bool FluxManager::loadData()
 
 bool FluxManager::saveData() const
 {
-    QFile saveFile(QStringLiteral("save.json"));
+    QString path = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    QDir dir(path);
+    dir.mkdir(path);
+    path += "/save.json";
+    QFile saveFile(path);
 
-    if (!saveFile.open(QIODevice::WriteOnly)) {
+
+    if (!saveFile.open(QIODevice::ReadWrite)) {
         qWarning("Couldn't open save file.");
         return false;
     }

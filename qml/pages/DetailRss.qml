@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import ChannelModel 1.0
-import FluxManager 1.0
 
 Page {
     property var channel

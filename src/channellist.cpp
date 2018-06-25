@@ -3,7 +3,7 @@
 
 ChannelList::ChannelList(QObject *parent) : QObject(parent)
 {
-    append(new Channel("Rss football", "https://foot.com/rss"));
+    //append(new Channel("Rss football", "https://foot.com/rss"));
 }
 
 void ChannelList::append(Channel *channel)
