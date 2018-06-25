@@ -4,7 +4,7 @@ import ChannelModel 1.0
 
 Page {
     id: page
-
+    Component.onDestruction: manager.saveData();
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
 

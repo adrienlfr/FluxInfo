@@ -1,4 +1,5 @@
 #include "channellist.h"
+#include <QJsonArray>
 
 ChannelList::ChannelList(QObject *parent) : QObject(parent)
 {
@@ -42,4 +43,27 @@ void ChannelList::removeChannel(int position)
         connect( m_channels[position], &Channel::channelChanged, this, [=](){ emit ChannelList::itemChanged( position ); } );
     }
     emit postItemRemoved();
+}
+
+void ChannelList::read(const QJsonObject &json)
+{
+   m_channels.clear();
+   QJsonArray channelArray = json["channels"].toArray();
+   for (int channelIndex = 0; channelIndex < channelArray.size(); ++channelIndex) {
+       QJsonObject channelObject = channelArray[channelIndex].toObject();
+       Channel *channel;
+       channel->read(channelObject);
+       m_channels.append(channel);
+   }
+}
+
+void ChannelList::write(QJsonObject &json) const
+{
+    QJsonArray channelArray;
+    foreach (const Channel *channel, m_channels) {
+        QJsonObject channelObject;
+        channel->write(channelObject);
+        channelArray.append(channelObject);
+    }
+    json["channels"] = channelArray;
 }

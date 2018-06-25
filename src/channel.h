@@ -2,6 +2,7 @@
 #define CHANNEL_H
 
 #include <QObject>
+#include <QJsonObject>
 #include "channelitem.h"
 
 class Channel : public QObject
