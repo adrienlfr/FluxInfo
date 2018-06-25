@@ -10,7 +10,8 @@ class ParserRSS : public QObject
 public:
     explicit ParserRSS(QObject *parent = nullptr);
 
-    static Rss* parse(QString lien);
+    Rss* parse(QString lien);
+
 
 signals:
     void rssChanged();

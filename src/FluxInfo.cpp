@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     FluxManager manager;
 
     QQuickView *view = SailfishApp::createView();
-//    view -> rootContext() -> setContextProperty("mesChannels", manager.channels());
+    view -> rootContext() -> setContextProperty("mesChannels", manager.channels());
     view -> rootContext() -> setContextProperty("manager", &manager);
 
     view -> setSource(SailfishApp::pathToMainQml());

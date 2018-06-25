@@ -19,6 +19,8 @@ QVariant ChannelModel::data(const QModelIndex &index, int role) const
     switch (role) {
     case TitreRole:
         return channel->titre();
+    case LienRole:
+        return channel->lien();
     case ChannelRole:
         return QVariant(QVariant::fromValue(channel));
     default:

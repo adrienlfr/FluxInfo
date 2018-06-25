@@ -17,6 +17,10 @@ Page {
                 text: qsTr("Flux RSS")
                 onClicked: pageStack.push(Qt.resolvedUrl("FluxRSSPage.qml"))
             }
+            MenuItem {
+                text: qsTr("Parse")
+                onClicked: manager.parseRss("");
+            }
         }
 
         // Tell SilicaFlickable the height of its content.

@@ -9,7 +9,8 @@ FluxManager::FluxManager(QObject *parent) : QObject(parent)
 
 void FluxManager::parseRss(QString lien)
 {
-    ParserRSS::parse(lien);
+    ParserRSS parser;
+    auto rss = parser.parse("https://www.lemonde.fr/football/rss_full.xml");
 }
 
 ChannelList* FluxManager::channels()

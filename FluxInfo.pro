@@ -15,6 +15,7 @@ TARGET = FluxInfo
 CONFIG += sailfishapp
 
 QT += xml
+QT += network
 
 SOURCES += src/FluxInfo.cpp \
     src/channel.cpp \

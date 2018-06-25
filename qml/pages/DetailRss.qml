@@ -41,7 +41,6 @@ Page {
                 width: parent.width
                 EnterKey.onClicked: {
                     channel.lien= text
-                    sizeField.focus = true
                 }
                 onFocusChanged: {
                     text = Qt.binding( function() { return channel.lien} );
@@ -56,10 +55,8 @@ Page {
                 label: "Titre"
                 width: parent.width
 
-                inputMethodHints: Qt.ImhDigitsOnly
                 EnterKey.onClicked: {
                     channel.titre = text
-                    focus = true
                 }
                 onFocusChanged:  text = Qt.binding( function() { return channel.titre} )
             }

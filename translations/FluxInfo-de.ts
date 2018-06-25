@@ -36,6 +36,10 @@
         <source>Articles</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Parse</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FluxRSSPage</name>
