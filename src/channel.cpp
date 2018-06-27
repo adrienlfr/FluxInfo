@@ -1,10 +1,15 @@
 #include "channel.h"
 
-Channel::Channel(QString titre, QString lien)
+Channel::Channel()
 {
     connect(this, &Channel::articlesChanged, this, &Channel::channelChanged);
     connect(this, &Channel::lienChanged, this, &Channel::channelChanged);
     connect(this, &Channel::titreChanged, this, &Channel::channelChanged);
+}
+
+Channel::Channel(QString titre, QString lien)
+{
+    Channel();
 
     setTitre(titre);
     setLien(lien);
@@ -23,6 +28,18 @@ QString Channel::lien() const
 QList<ChannelItem *> Channel::articles() const
 {
     return m_articles;
+}
+
+void Channel::read(const QJsonObject &json)
+{
+    setTitre(json["titre"].toString());
+    setLien(json["lien"].toString());
+}
+
+void Channel::write(QJsonObject &json) const
+{
+    json["titre"] = titre();
+    json["lien"] = lien();
 }
 
 void Channel::setTitre(QString titre)

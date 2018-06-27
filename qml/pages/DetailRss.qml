@@ -41,11 +41,7 @@ Page {
                 EnterKey.onClicked: {
                     channel.lien= text
                 }
-                onFocusChanged: {
-                    text = Qt.binding( function() { return channel.lien} );
-                    console.log("ok");
-
-                }
+                onFocusChanged: text = Qt.binding( function() { return channel.lien } )
             }
 
             TextField {

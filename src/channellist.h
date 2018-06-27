@@ -18,6 +18,9 @@ public:
     void createChannel(QString lien, QString titre);
     void removeChannel(int position);
 
+    void write(QJsonObject &json) const;
+    void read(const QJsonObject &json);
+
 signals:
     void preItemAppended();
     void postItemAppended();

@@ -17,11 +17,15 @@ private:
     QList<ChannelItem*> m_articles;
 
 public:
+    Channel();
     Channel(QString titre, QString lien);
 
     QString titre() const;
     QString lien() const;
     QList<ChannelItem*> articles() const;
+
+    void read(const QJsonObject &json);
+    void write(QJsonObject &json) const;
 
 public slots:
     void setTitre(QString titre);
